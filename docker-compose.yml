@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    db:
+        image: theoklein/mysql-test-db
+        container_name: database
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: nisra
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:4.6
+        container_name: phpmyadmin
+        restart: always
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - "80:80"
